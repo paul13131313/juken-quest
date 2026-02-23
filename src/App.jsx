@@ -18,22 +18,55 @@ function playBGM(k, loop = true) {
 }
 function stopAll() { Object.values(AU).forEach(a => { if (a) { a.pause(); a.currentTime = 0; } }); }
 
-/* ─── TAP SE (Web Audio API) ─── */
+/* ─── SE (Web Audio API) ─── */
 let audioCtx = null;
+function getCtx() { if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)(); return audioCtx; }
+
 function playTap() {
   try {
-    if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-    const osc = audioCtx.createOscillator();
-    const gain = audioCtx.createGain();
-    osc.connect(gain);
-    gain.connect(audioCtx.destination);
+    const ctx = getCtx();
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.connect(gain); gain.connect(ctx.destination);
     osc.type = "square";
-    osc.frequency.setValueAtTime(800, audioCtx.currentTime);
-    osc.frequency.exponentialRampToValueAtTime(400, audioCtx.currentTime + 0.06);
-    gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
-    gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.08);
-    osc.start(audioCtx.currentTime);
-    osc.stop(audioCtx.currentTime + 0.08);
+    osc.frequency.setValueAtTime(800, ctx.currentTime);
+    osc.frequency.exponentialRampToValueAtTime(400, ctx.currentTime + 0.06);
+    gain.gain.setValueAtTime(0.15, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.08);
+    osc.start(ctx.currentTime); osc.stop(ctx.currentTime + 0.08);
+  } catch {}
+}
+
+function playCorrect() {
+  try {
+    const ctx = getCtx();
+    const t = ctx.currentTime;
+    [523, 659, 784].forEach((freq, i) => {
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.connect(gain); gain.connect(ctx.destination);
+      osc.type = "square";
+      osc.frequency.setValueAtTime(freq, t + i * 0.07);
+      gain.gain.setValueAtTime(0.12, t + i * 0.07);
+      gain.gain.exponentialRampToValueAtTime(0.001, t + i * 0.07 + 0.12);
+      osc.start(t + i * 0.07); osc.stop(t + i * 0.07 + 0.12);
+    });
+  } catch {}
+}
+
+function playWrong() {
+  try {
+    const ctx = getCtx();
+    const t = ctx.currentTime;
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.connect(gain); gain.connect(ctx.destination);
+    osc.type = "square";
+    osc.frequency.setValueAtTime(200, t);
+    osc.frequency.exponentialRampToValueAtTime(120, t + 0.2);
+    gain.gain.setValueAtTime(0.15, t);
+    gain.gain.exponentialRampToValueAtTime(0.001, t + 0.25);
+    osc.start(t); osc.stop(t + 0.25);
   } catch {}
 }
 
@@ -389,6 +422,7 @@ export default function JukenQuest() {
     if (eqAnswered) return;
     setEqAnswered(true);
     const correct = ci === eqQuizzes[eqIndex].a;
+    if (!muted) { correct ? playCorrect() : playWrong(); }
     if (correct) setEqCorrect(c => c + 1);
     setEqResult(correct);
     setTimeout(() => {
@@ -481,7 +515,7 @@ export default function JukenQuest() {
     }, 1000);
   };
 
-  const doMash = () => { if (mashActive) setMashCount(c => c + 1); };
+  const doMash = () => { if (mashActive) { if (!muted) playTap(); setMashCount(c => c + 1); } };
 
   useEffect(() => {
     if (phase === "minigame_mash" && !mashActive && mashTimer === 0) {
@@ -575,6 +609,7 @@ export default function JukenQuest() {
     if (mqAnswered) return;
     setMqAnswered(true);
     const correct = ci === mqQuizzes[mqIndex].a;
+    if (!muted) { correct ? playCorrect() : playWrong(); }
     if (correct) setMqCorrect(c => c + 1);
     setTimeout(() => {
       if (mqIndex < 2) {
@@ -637,6 +672,7 @@ export default function JukenQuest() {
     setExamAnswered(true);
     const q = examQList[examQIdx];
     const correct = ci === q.a;
+    if (!muted) { correct ? playCorrect() : playWrong(); }
     const newCorrect = examCorrectCount + (correct ? 1 : 0);
     setExamCorrectCount(newCorrect);
 
