@@ -593,9 +593,9 @@ export default function JukenQuest() {
       return s;
     };
     const schools = [
-      { ...pickSchool(challengeR), rank: challengeR, type: "チャレンジ校" },
-      { ...pickSchool(rank), rank, type: "本命校" },
       { ...pickSchool(safeR), rank: safeR, type: "安全校" },
+      { ...pickSchool(rank), rank, type: "本命校" },
+      { ...pickSchool(challengeR), rank: challengeR, type: "チャレンジ校" },
     ];
     setExamSchools(schools);
     setExamIdx(0); setExamResults([]); setExamAnswered(false);
@@ -1211,9 +1211,9 @@ export default function JukenQuest() {
                 <div style={{ fontSize: 11, color: "#888", marginBottom: 20 }}>正解数: {r.correct}/{r.total}</div>
 
                 <div style={{ fontSize: 13, color: "#aaa", lineHeight: 2, marginBottom: 20 }}>
-                  {idx === 0 && "掲示板の前。\n人混みをかき分けて、番号を探す…"}
-                  {idx === 1 && "2校目の発表。\n震える手でスマホの合否照会を開く…"}
-                  {idx === 2 && "最後の学校。\n家族全員が画面を見つめている…"}
+                  {idx === 0 && "まずは安全校の発表。\n掲示板の前で、番号を探す…"}
+                  {idx === 1 && "本命校の発表。\n震える手でスマホの合否照会を開く…"}
+                  {idx === 2 && "最後はチャレンジ校。\n家族全員が画面を見つめている…"}
                 </div>
 
                 <p style={{ fontSize: 12, color: "#666", animation: "pulse 1.5s infinite" }}>…</p>
@@ -1240,13 +1240,13 @@ export default function JukenQuest() {
               <div style={{ fontSize: 14, color: "#f1c40f", marginBottom: 16 }}>{r.school.name}</div>
               {r.passed ? (
                 <p style={{ fontSize: 13, color: "#ddd", lineHeight: 2 }}>
-                  {idx === 0 && "番号があった！！\n思わず声が出る。隣にいた親子が振り返る。"}
+                  {idx === 0 && "番号があった！\nまずは一安心。幸先のいいスタート。"}
                   {idx === 1 && "画面に「合格」の文字。\n手が震えて、スマホを落としそうになる。"}
                   {idx === 2 && "…あった。\n家族全員が、同時に泣いた。"}
                 </p>
               ) : (
                 <p style={{ fontSize: 13, color: "#ddd", lineHeight: 2 }}>
-                  {idx === 0 && "何度見ても、番号がない。\n…でも、まだ次がある。"}
+                  {idx === 0 && "番号がない…。\n…でも、まだ本命とチャレンジ校がある。"}
                   {idx === 1 && "「不合格」の文字が、画面に浮かぶ。\n…切り替えよう。"}
                   {idx === 2 && "…最後の望み。\nだが、結果は変わらなかった。"}
                 </p>
