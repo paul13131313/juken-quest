@@ -18,6 +18,25 @@ function playBGM(k, loop = true) {
 }
 function stopAll() { Object.values(AU).forEach(a => { if (a) { a.pause(); a.currentTime = 0; } }); }
 
+/* ─── TAP SE (Web Audio API) ─── */
+let audioCtx = null;
+function playTap() {
+  try {
+    if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+    osc.type = "square";
+    osc.frequency.setValueAtTime(800, audioCtx.currentTime);
+    osc.frequency.exponentialRampToValueAtTime(400, audioCtx.currentTime + 0.06);
+    gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.08);
+    osc.start(audioCtx.currentTime);
+    osc.stop(audioCtx.currentTime + 0.08);
+  } catch {}
+}
+
 /* ─── UTILS ─── */
 const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
 const pick = a => a[Math.floor(Math.random() * a.length)];
@@ -664,7 +683,7 @@ export default function JukenQuest() {
     <div style={{ background: "#252550", border: "3px solid #3a3a6a", borderRadius: 2, padding: 12, margin: "8px 0", boxShadow: "4px 4px 0 #1a1a2e", ...style }}>{children}</div>
   );
   const Btn = ({ children, color = "#3498db", onClick, disabled, style = {} }) => (
-    <div onClick={disabled ? null : onClick} style={{
+    <div onClick={disabled ? null : (e) => { if (!muted) playTap(); onClick && onClick(e); }} style={{
       fontFamily: "'DotGothic16', monospace", fontSize: 13, padding: "10px 14px",
       background: disabled ? "#333" : color, color: disabled ? "#666" : "#fff",
       border: `3px solid ${disabled ? "#222" : dk(color)}`, borderRadius: 2,
