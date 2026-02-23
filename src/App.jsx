@@ -160,7 +160,7 @@ function pickQuizzes(n) {
 /* ─── SCHOOL DATA ─── */
 const SCHOOLS = {
   S: [{ name: "開誠", model: "開成", dev: 72 }, { name: "桜隠", model: "桜蔭", dev: 69 }, { name: "渋々", model: "渋渋", dev: 68 }],
-  A: [{ name: "海条", model: "海城", dev: 65 }, { name: "明治大明", model: "明大明治", dev: 62 }],
+  A: [{ name: "海条", model: "海城", dev: 65 }, { name: "慶應中等科", model: "慶應中等部", dev: 65 }, { name: "明治大明", model: "明大明治", dev: 62 }],
   B: [{ name: "木郷", model: "本郷", dev: 61 }, { name: "芝々", model: "芝", dev: 58 }],
   C: [{ name: "法制大学", model: "法政大学", dev: 56 }, { name: "成踵", model: "成蹊", dev: 50 }, { name: "國學院陸山", model: "國學院久我山", dev: 50 }],
   D: [{ name: "安達学園", model: "足立学園", dev: 48 }, { name: "桜野", model: "桜丘", dev: 40 }],
@@ -192,14 +192,14 @@ function buildStory() {
     { t: "talk", who: "👦", name: "我が子", text: "「塾って思ったより楽しいかも！\nとなりの席の子、もう友達になったよ！」" },
     { t: "talk", who: "👨‍🏫", name: "先生", text: "「ようこそ。まずは勉強を好きになること。\n焦らず、一歩ずつ行きましょう。」" },
     { t: "choice", text: "GW、どう過ごす？", opts: [
-      { label: "🎓 塾の特別講座に参加", desc: "学力UP、でも疲れる", fx: { ac: 3, st: -8 } },
+      { label: "🎓 塾の特別講座に参加", desc: "学力UP、でも疲れる", fx: { ac: 2, st: -8 } },
       { label: "🏖️ 家族旅行でリフレッシュ", desc: "やる気と体力が回復", fx: { mo: 10, st: 8, me: 5 } },
     ]},
   ]},
   // ═══ 小4 夏 ═══
   { season: "summer", year: 4, title: "小4・夏「はじめての夏期講習」", emoji: "🌻", beats: [
     { t: "talk", who: "☀️", name: "", text: "夏休みが来た！\n…でも塾通いの子に夏休みなんてない。\n朝から夕方まで、毎日授業。" },
-    { t: "minigame", game: "mash", title: "🔥 夏期講習チャレンジ！", desc: "5秒間で連打！がんばった分だけ学力UP！", reward: { ac: [3, 6, 10] } },
+    { t: "minigame", game: "mash", title: "🔥 夏期講習チャレンジ！", desc: "5秒間で連打！がんばった分だけ学力UP！", reward: { ac: [2, 4, 7] } },
     { t: "talk", who: "👦", name: "我が子", text: "「みんなプール行ってるのに\nなんで僕だけ…」" },
     { t: "choice", text: "子供が「遊びたい」と訴えてきた", opts: [
       { label: "🏊 「1日だけね」とプールへ", desc: "リフレッシュ", fx: { mo: 12, me: 8, ac: -1 } },
@@ -210,7 +210,7 @@ function buildStory() {
   // ═══ 小4 秋 ═══
   { season: "autumn", year: 4, title: "小4・秋「はじめての模試」", emoji: "🍂", beats: [
     { t: "talk", who: "🍁", name: "", text: "秋風が吹き始めた頃。\n初めての全国模試。\n偏差値という残酷な数字と向き合う日が来た。" },
-    { t: "minigame", game: "quiz", title: "📝 全国模試", desc: "3問勝負！", reward: { ac: [2, 5, 8] } },
+    { t: "minigame", game: "quiz", title: "📝 全国模試", desc: "3問勝負！", reward: { ac: [1, 3, 6] } },
     { t: "talk", who: "👨‍🏫", name: "先生（面談）", text: "「まだ4年生。今の偏差値は気にしすぎないで。\n大事なのは勉強の習慣をつけること。\n…ただ、算数はもう少し頑張りたいですね。」" },
     { t: "talk", who: "👦", name: "我が子", text: "「ねえ…僕って頭悪いのかな…」\n\n偏差値を見て、初めて落ち込んだ顔をしている。" },
     { t: "choice", text: "子供にどう声をかける？", opts: [
@@ -222,7 +222,7 @@ function buildStory() {
   { season: "winter", year: 4, title: "小4・冬「サンタと偏差値」", emoji: "⛄", beats: [
     { t: "talk", who: "🎄", name: "", text: "クリスマス。\nサンタへの手紙に\n「偏差値60ください」と書いてあった。\n\n…泣ける。" },
     { t: "choice", text: "冬休み、どう過ごす？", opts: [
-      { label: "📚 冬期講習に集中", desc: "学力UP", fx: { ac: 5, st: -8 } },
+      { label: "📚 冬期講習に集中", desc: "学力UP", fx: { ac: 3, st: -8 } },
       { label: "🏠 家族でゆっくり過ごす", desc: "絆と心が回復", fx: { ha: 10, me: 8, mo: 5 } },
     ]},
     { t: "talk", who: "👫", name: "夫婦", text: "「…ねえ、本当にこのまま続けて大丈夫？」\n「まだ4年生だよ。もう少し様子を見よう」\n\n夫婦の間にも、温度差が生まれ始めている。" },
@@ -233,19 +233,20 @@ function buildStory() {
     { t: "talk", who: "🌸", name: "", text: "5年生。カリキュラムの難度がグッと上がった。\n新しい顔ぶれの中に、気になる転校生がいる。" },
     { t: "talk", who: "👦", name: "我が子", text: "「あの子すごいんだよ。\n算数で僕より全然速いし、国語も得意で…」\n\nライバルの登場だ。" },
     { t: "choice", text: "ライバルの存在をどう活かす？", opts: [
-      { label: "🔥 「負けないようにがんばろう」", desc: "闘争心に火をつける", fx: { mo: 10, ac: 2, me: -3 } },
+      { label: "🔥 「負けないようにがんばろう」", desc: "闘争心に火をつける", fx: { mo: 10, ac: 1, me: -3 } },
       { label: "🧘 「人と比べなくていいよ」", desc: "マイペースを守る", fx: { me: 8, mo: 3 } },
     ]},
+    { t: "talk", who: "👩", name: "慶應ママ", text: "「うちは幼稚舎から慶應で、主人も義父も慶應。\n一族全員慶應なの♪\nやっぱり慶應のネットワークって最強よ〜」\n\n…聞いてないけど、ありがとう。" },
     { t: "talk", who: "📝", name: "", text: "宿題の量が去年の1.5倍に。\n「終わらないんだけど…」が口癖になった。" },
     { t: "choice", text: "宿題が終わらない日々。どうする？", opts: [
-      { label: "👨‍👩‍👦 親が横について一緒にやる", desc: "学力UP、親の負担大", fx: { ac: 3, ha: 5, an: 8 } },
+      { label: "👨‍👩‍👦 親が横について一緒にやる", desc: "学力UP、親の負担大", fx: { ac: 2, ha: 5, an: 8 } },
       { label: "📋 優先順位をつけて取捨選択", desc: "効率的だが穴が出る", fx: { ac: 1, st: 5, me: 5 } },
     ]},
   ]},
   // ═══ 小5 夏 ═══
   { season: "summer", year: 5, title: "小5・夏「天王山」", emoji: "🌻", beats: [
     { t: "talk", who: "🔥", name: "", text: "「5年の夏は天王山」と先生が言った。\nここで差がつく。逆転もここから。\nプレッシャーが、親にも子にもかかる。" },
-    { t: "minigame", game: "mash", title: "🏕️ 夏期合宿チャレンジ！", desc: "5秒間で全力連打！がんばりが成績に直結！", reward: { ac: [4, 8, 14] } },
+    { t: "minigame", game: "mash", title: "🏕️ 夏期合宿チャレンジ！", desc: "5秒間で全力連打！がんばりが成績に直結！", reward: { ac: [3, 6, 10] } },
     { t: "talk", who: "📞", name: "我が子（合宿中の電話）", text: "「帰りたい…夜、みんなの前で泣いちゃった…\nでも先生が『がんばってるぞ』って。\nもうちょっと、がんばってみる。」" },
     { t: "talk", who: "🍙", name: "夜食タイム", text: "夜10時。塾から帰った我が子に\n温かいおにぎりを出した。\n「おいしい…」と笑った顔に、少し安心する。" },
     { t: "talk", who: "👫", name: "夫婦喧嘩", text: "「成績上がらないじゃないか！」\n「口出しすると子供が萎縮するの！」\n\n真夏の夜。子供はきっと聞いている。" },
@@ -263,16 +264,16 @@ function buildStory() {
       { label: "🏠 安全圏の学校", desc: "確実路線", fx: { mo: 3, me: 8, an: -5 } },
     ]},
     { t: "talk", who: "👦", name: "我が子", text: "「…すごい。\nこんな学校に通えたら毎日楽しいだろうな。」\n\nキラキラした目で校舎を見上げている。" },
-    { t: "minigame", game: "balance", title: "📊 秋の実力テスト", desc: "集中力を保て！バーを中央にキープ！", reward: { ac: [2, 5, 9] } },
+    { t: "minigame", game: "balance", title: "📊 秋の実力テスト", desc: "集中力を保て！バーを中央にキープ！", reward: { ac: [1, 3, 6] } },
   ]},
   // ═══ 小5 冬 ═══
   { season: "winter", year: 5, title: "小5・冬「折り返し地点」", emoji: "⛄", beats: [
     { t: "talk", who: "❄️", name: "", text: "受験まであと1年。\n「まだ1年ある」のか「もう1年しかない」のか。\n感じ方は人それぞれ。" },
-    { t: "minigame", game: "timing", title: "🎍 正月特訓ゼミ", desc: "タイミングよくタップ！集中力が試される！", reward: { ac: [3, 6, 10] } },
+    { t: "minigame", game: "timing", title: "🎍 正月特訓ゼミ", desc: "タイミングよくタップ！集中力が試される！", reward: { ac: [2, 4, 7] } },
     { t: "talk", who: "🎍", name: "", text: "初詣で手を合わせる。\n「合格しますように」\n隣で小さな手も、同じことを祈っている。" },
     { t: "talk", who: "👦", name: "我が子", text: "「お父さん、お母さん。\n僕、がんばるから。見ててね。」\n\n成長したな、と思う。でもまだ11歳の子供だ。" },
     { t: "choice", text: "5年生の終わり。追加で何かする？", opts: [
-      { label: "👨‍🏫 個別指導をつける", desc: "弱点補強、負荷増", fx: { ac: 5, st: -8 } },
+      { label: "👨‍🏫 個別指導をつける", desc: "弱点補強、負荷増", fx: { ac: 3, st: -8 } },
       { label: "🙏 子供の自主性に任せる", desc: "信じて待つ", fx: { mo: 8, me: 5 } },
     ]},
   ]},
@@ -290,7 +291,7 @@ function buildStory() {
   // ═══ 小6 夏 ═══
   { season: "summer", year: 6, title: "小6・夏「最後の夏休み」", emoji: "🌻", beats: [
     { t: "talk", who: "🔥", name: "", text: "小学校最後の夏休み。\n他の子は海やキャンプ。\n我が子は朝8時から夜9時まで、塾。" },
-    { t: "minigame", game: "mash", title: "🔥 最後の夏期講習！", desc: "ここが正念場！5秒間全力連打！", reward: { ac: [5, 10, 16] } },
+    { t: "minigame", game: "mash", title: "🔥 最後の夏期講習！", desc: "ここが正念場！5秒間全力連打！", reward: { ac: [3, 7, 12] } },
     { t: "talk", who: "👦", name: "我が子", text: "「…疲れた。でも、もう少しやる。\nあの学校に行きたいから。」\n\n机に向かう小さな背中。頼もしい。" },
     { t: "choice", text: "夏の終わり。子供が弱音を吐いた", opts: [
       { label: "🍦 アイスを買って気分転換", desc: "心の回復", fx: { me: 10, mo: 5, st: 5 } },
@@ -300,18 +301,18 @@ function buildStory() {
   // ═══ 小6 秋 ═══
   { season: "autumn", year: 6, title: "小6・秋「過去問との戦い」", emoji: "🍂", beats: [
     { t: "talk", who: "📚", name: "", text: "過去問演習が始まった。\n志望校の入試問題と初めて向き合う。\n…難しい。点が取れない。" },
-    { t: "minigame", game: "quiz", title: "📝 志望校の過去問", desc: "入試レベルの問題に挑戦！", reward: { ac: [3, 7, 12] } },
+    { t: "minigame", game: "quiz", title: "📝 志望校の過去問", desc: "入試レベルの問題に挑戦！", reward: { ac: [2, 5, 9] } },
     { t: "talk", who: "👨‍🏫", name: "先生", text: "「過去問は最初解けなくて当然。\n大事なのは『なぜ間違えたか』を分析すること。\n本番まで伸びますよ。」" },
     { t: "talk", who: "👦", name: "我が子", text: "「ライバルのあいつ、\n第一志望A判定出たらしい…\n僕はまだCなのに…」" },
     { t: "choice", text: "子供が不安でいっぱいだ", opts: [
-      { label: "📊 一緒に弱点分析する", desc: "具体的な対策で安心", fx: { ac: 3, me: 5 } },
+      { label: "📊 一緒に弱点分析する", desc: "具体的な対策で安心", fx: { ac: 2, me: 5 } },
       { label: "🫂 「大丈夫。信じてる」と抱きしめる", desc: "心の支え", fx: { me: 12, mo: 5 } },
     ]},
   ]},
   // ═══ 小6 冬 ═══
   { season: "winter", year: 6, title: "小6・冬「いよいよ、その日」", emoji: "⛄", beats: [
     { t: "talk", who: "❄️", name: "", text: "1月。ついに受験シーズン。\n町中の掲示板に「合格祈願」の文字。\n家中がピリピリしている。" },
-    { t: "minigame", game: "timing", title: "⚡ 直前ゼミ・最終調整", desc: "最後の追い込み！集中力を発揮せよ！", reward: { ac: [3, 6, 10] } },
+    { t: "minigame", game: "timing", title: "⚡ 直前ゼミ・最終調整", desc: "最後の追い込み！集中力を発揮せよ！", reward: { ac: [2, 4, 7] } },
     { t: "talk", who: "👫", name: "夫婦", text: "「…ここまでよくがんばったね、私たちも」\n「うん。あとは子供を信じよう」\n\n2人の間に、静かな覚悟がある。" },
     { t: "talk", who: "👦", name: "我が子（前夜）", text: "「明日、がんばるね。\n…怖いけど、がんばる。\nいっぱい応援してくれて、ありがとう。」" },
     { t: "talk", who: "🌙", name: "", text: "眠れない夜。\n明日の持ち物を何度も確認する。\n鉛筆、消しゴム、受験票…\n\nそして、3年間の想い。" },
@@ -438,7 +439,7 @@ export default function JukenQuest() {
         else { cls = "D"; sn = "日能験"; }
         setStartClass(cls);
         setSchoolName(sn);
-        setStats({ ac: 30 + total * 6, mo: 70, st: 80, me: 75, ha: 80, an: 20 });
+        setStats({ ac: 25 + total * 5, mo: 70, st: 80, me: 75, ha: 80, an: 20 });
         setPhase("entrance_result");
       }
     }, 1200);
