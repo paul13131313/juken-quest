@@ -159,11 +159,11 @@ function pickQuizzes(n) {
 
 /* ─── SCHOOL DATA ─── */
 const SCHOOLS = {
-  S: [{ name: "開誠", model: "開成", dev: 78 }, { name: "桜隠", model: "桜蔭", dev: 77 }],
-  A: [{ name: "海条", model: "海城", dev: 72 }, { name: "渋々", model: "渋渋", dev: 71 }],
-  B: [{ name: "芝々", model: "芝", dev: 65 }, { name: "木郷", model: "本郷", dev: 64 }],
-  C: [{ name: "成踵", model: "成蹊", dev: 58 }, { name: "國學院陸山", model: "國學院久我山", dev: 56 }],
-  D: [{ name: "安達学園", model: "足立学園", dev: 48 }, { name: "桜野", model: "桜丘", dev: 47 }],
+  S: [{ name: "開誠", model: "開成", dev: 72 }, { name: "桜隠", model: "桜蔭", dev: 69 }, { name: "渋々", model: "渋渋", dev: 68 }],
+  A: [{ name: "海条", model: "海城", dev: 65 }, { name: "明治大明", model: "明大明治", dev: 62 }],
+  B: [{ name: "木郷", model: "本郷", dev: 61 }, { name: "芝々", model: "芝", dev: 58 }],
+  C: [{ name: "法制大学", model: "法政大学", dev: 56 }, { name: "成踵", model: "成蹊", dev: 50 }, { name: "國學院陸山", model: "國學院久我山", dev: 50 }],
+  D: [{ name: "安達学園", model: "足立学園", dev: 48 }, { name: "桜野", model: "桜丘", dev: 40 }],
 };
 
 /* ─── STYLES ─── */
