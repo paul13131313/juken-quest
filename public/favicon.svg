@@ -1,0 +1,16 @@
+<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="32" height="32" rx="6" fill="#1a1a2e"/>
+
+  <!-- "Q" Text -->
+  <text
+    x="16"
+    y="24"
+    font-size="24"
+    font-weight="bold"
+    font-family="Arial, sans-serif"
+    text-anchor="middle"
+    dominant-baseline="middle"
+    fill="#f1c40f"
+  >Q</text>
+</svg>
