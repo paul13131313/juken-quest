@@ -671,7 +671,7 @@ export default function JukenQuest() {
       cursor: disabled ? "not-allowed" : "pointer", textAlign: "center",
       boxShadow: disabled ? "none" : `3px 3px 0 ${dk(color)}`,
       textShadow: disabled ? "none" : `1px 1px 0 ${dk(color)}`,
-      transition: "all 0.1s", ...style,
+      transition: "all 0.1s", userSelect: "none", WebkitUserSelect: "none", ...style,
     }}>{children}</div>
   );
   const Bar = ({ value, color, label }) => (
@@ -734,7 +734,7 @@ export default function JukenQuest() {
                     background: eqAnswered ? (ci === q.a ? "#1a4a1a" : eqResult === false && ci !== q.a ? "#1a1a30" : "#1a1a30") : "#2a2a50",
                     border: `2px solid ${eqAnswered && ci === q.a ? "#2ecc71" : "#4a4a7a"}`,
                     borderRadius: 2, padding: "10px 12px", cursor: eqAnswered ? "default" : "pointer",
-                    fontSize: 13, color: "#eee", transition: "all 0.2s",
+                    fontSize: 13, color: "#eee", transition: "all 0.2s", userSelect: "none", WebkitUserSelect: "none",
                   }}>
                     {["ア","イ","ウ"][ci]}. {c} {eqAnswered && ci === q.a && " ✓"}
                   </div>
@@ -828,7 +828,7 @@ export default function JukenQuest() {
 
               {/* Talk / Event */}
               {(beat.t === "talk" || beat.t === "event") && (
-                <div onClick={handleBeatTap} style={{ cursor: "pointer", flex: 1, display: "flex", flexDirection: "column", justifyContent: "center" }}>
+                <div onClick={handleBeatTap} style={{ cursor: "pointer", flex: 1, display: "flex", flexDirection: "column", justifyContent: "center", userSelect: "none", WebkitUserSelect: "none" }}>
                   {beat.who && (
                     <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 12 }}>
                       <span style={{ fontSize: 32 }}>{beat.who}</span>
@@ -856,7 +856,7 @@ export default function JukenQuest() {
                     {beat.opts.map((o, i) => (
                       <div key={i} onClick={() => handleChoice(o)} style={{
                         background: "#252550", border: "3px solid #4a4a7a", borderRadius: 2,
-                        padding: "12px", cursor: "pointer", transition: "all 0.15s",
+                        padding: "12px", cursor: "pointer", transition: "all 0.15s", userSelect: "none", WebkitUserSelect: "none",
                       }}>
                         <div style={{ fontSize: 14, color: "#eee" }}>{o.label}</div>
                         <div style={{ fontSize: 10, color: "#888", marginTop: 3 }}>{o.desc}</div>
@@ -1072,7 +1072,7 @@ export default function JukenQuest() {
                   <div key={ci} onClick={() => answerMQ(ci)} style={{
                     background: mqAnswered ? (ci === q.a ? "#1a4a1a" : "#1a1a30") : "#2a2a50",
                     border: `2px solid ${mqAnswered && ci === q.a ? "#2ecc71" : "#4a4a7a"}`,
-                    borderRadius: 2, padding: "10px 12px", cursor: mqAnswered ? "default" : "pointer", fontSize: 13, color: "#eee",
+                    borderRadius: 2, padding: "10px 12px", cursor: mqAnswered ? "default" : "pointer", fontSize: 13, color: "#eee", userSelect: "none", WebkitUserSelect: "none",
                   }}>
                     {["ア","イ","ウ"][ci]}. {c} {mqAnswered && ci === q.a && " ✓"}
                   </div>
@@ -1140,7 +1140,7 @@ export default function JukenQuest() {
                   <div key={ci} onClick={() => answerExam(ci)} style={{
                     background: examAnswered ? (ci === q.a ? "#1a4a1a" : "#1a1a30") : "#252550",
                     border: `2px solid ${examAnswered && ci === q.a ? "#2ecc71" : "#4a4a7a"}`,
-                    borderRadius: 2, padding: "10px 12px", cursor: examAnswered ? "default" : "pointer", fontSize: 13, color: "#eee",
+                    borderRadius: 2, padding: "10px 12px", cursor: examAnswered ? "default" : "pointer", fontSize: 13, color: "#eee", userSelect: "none", WebkitUserSelect: "none",
                   }}>
                     {["ア","イ","ウ"][ci]}. {c} {examAnswered && ci === q.a && " ✓"}
                   </div>
